@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Spam Detector</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+			text-align: center;
+			margin-top: 50px;
+		}
+		form {
+			margin: auto;
+			width: 50%;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+		}
+		label {
+			font-size: 18px;
+			font-weight: bold;
+			display: block;
+			margin-bottom: 10px;
+		}
+		input[type="text"] {
+			font-size: 16px;
+			padding: 10px;
+			border-radius: 3px;
+			border: none;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+			width: 100%;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			font-size: 16px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+		.result {
+			margin-top: 20px;
+			padding: 10px;
+			border-radius: 3px;
+			box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+		}
+		.result span {
+			font-size: 18px;
+			font-weight: bold;
+		}
+		.result p {
+			font-size: 16px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Spam Detector</h1>
+	<form action="{{ url_for('predict')}}" method="POST">
+		<label for="message">Enter message:</label>
+		<input type="text" id="message" name="message">
+		<input type="submit" value="Detect Spam">
+		<div class="results">
+			{% if prediction == 1%}
+			<h2 style="color:red;">Looking Spam⚠️, Be safe</h2>
+			{% elif prediction == 0%}
+			<h2 style="color:green;"><b>Not a Spam💚</b></h2>
+			{% endif %}
+		</div>
+	</form>
+</body>
+</html>
